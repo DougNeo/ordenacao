@@ -3,11 +3,11 @@
 require 'csv'
 require 'gruff'
 
-def gerar_graficos
+def gerar_graficos(csv)
   tempos_por_algoritmo = Hash.new { |hash, key| hash[key] = [] }
   tamanhos = []
 
-  CSV.foreach("resultados.csv", headers: true) do |row|
+  CSV.foreach(csv, headers: true) do |row|
     tamanho = row["Tamanho do Array"].to_i
     algoritmo = row["Algoritmo"]
     tempo_total = row["Tempo Total"].to_f
@@ -24,6 +24,11 @@ def gerar_graficos
     grafico.data(algoritmo, tempos)
   end
 
-  grafico.write("grafico.png")
+  grafico.write("grafico_#{DateTime.now.to_time.to_i}.png")
   puts "Gráfico gerado com sucesso!"
 end
+
+
+# gerar_graficos("merge_sort.csv")
+# gerar_graficos("quick_sort.csv")
+gerar_graficos("bubble_sort.csv")

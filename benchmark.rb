@@ -5,7 +5,8 @@ require 'csv'
 
 def comparativo(array_sizes)
   mutex = Mutex.new
-  CSV.open("resultados.csv", "w") do |csv|
+  resultado = "resultados_#{DateTime.now.to_time.to_i}.csv"
+  CSV.open(resultado, "w") do |csv|
     csv << ["Tamanho do Array", "Algoritmo", "Tempo de User", "Tempo de System", "Tempo Total"]
 
     array_sizes.each do |size|
@@ -15,12 +16,12 @@ def comparativo(array_sizes)
       Benchmark.bm(20) do |x|
         threads = []
 
-        threads << Thread.new do
-          mutex.synchronize do
-            tempo = x.report("Bubble Sort (#{size}):") { bubble_sort(array.dup) }
-            csv << [size, "Bubble Sort", tempo.utime, tempo.stime, tempo.total]
-          end
-        end
+        # threads << Thread.new do
+        #   mutex.synchronize do
+        #     tempo = x.report("Bubble Sort (#{size}):") { bubble_sort(array.dup) }
+        #     csv << [size, "Bubble Sort", tempo.utime, tempo.stime, tempo.total]
+        #   end
+        # end
 
         threads << Thread.new do
           mutex.synchronize do
@@ -40,4 +41,5 @@ def comparativo(array_sizes)
       end
     end
   end
+  resultado
 end

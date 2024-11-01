@@ -12,9 +12,10 @@ verificar_ou_gerar_base
 array_sizes = (1..10).map { |i| i * 10_000 }
 
 # Passo 2: Realizar o comparativo com esta base de dados e salvar os resultados em CSV
-comparativo(array_sizes)
+resultado = comparativo(array_sizes)
 
 # Passo 3: Gerar o gráfico com base nos resultados do CSV
-gerar_graficos
+
+gerar_graficos(resultado)
 
 puts "Processo completo! O gráfico e os resultados foram gerados com sucesso."
