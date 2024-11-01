@@ -26,7 +26,7 @@ gem install benchmark csv json gruff
 - Clone este repositório e entre no diretorio:
 ```bash
 git clone https://github.com/DougNeo/ordenacao.git
-cd projeto-ordenacao
+cd ordenacao
 ```
 
 ## Execução do Projeto
