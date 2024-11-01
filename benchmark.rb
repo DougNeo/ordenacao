@@ -1,7 +1,8 @@
 require 'benchmark'
 require 'csv'
 
-def comparativo(array_sizes, mutex)
+def comparativo(array_sizes)
+  mutex = Mutex.new
   CSV.open("resultados.csv", "w") do |csv|
     csv << ["Tamanho do Array", "Algoritmo", "Tempo de User", "Tempo de System", "Tempo Total"]
     

@@ -1,5 +1,5 @@
 require 'json'
-require 'date '
+require 'date'
 
 # Função para gerar arrays aleatórios
 def generate_random_array(size)
@@ -16,7 +16,4 @@ File.open("amostras_de_#{DateTime.now}.txt", "w") do |file|
     file.puts(array.to_json) # Salvando o array em formato JSON
   end
 end
-
-
-
 puts "Amostras geradas e salvas no arquivo amostras.txt."
